@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Linda Thomas" />
+
+<title>Lenfest - SE Australia case study</title>
+
+<script src="Linda_poster_files/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-blueberry.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.23);
+width: 90%;
+height: calc(1189mm * 0.65);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/blueberry.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Lenfest - SE Australia case study</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author">Linda Thomas</h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/LindaThomas009">www.github.com/LindaThomas009</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Oceans &amp; Atmosphere</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/photo_me.jpeg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I’m Linda Thomas from Oceans &amp; Atmosphere in Hobart. I’ve had varied roles during my 14 years
+at CSIRO - Oracle database development, MNF Data Librarian. Before Data School I wouldn’t say I
+could code very well, just do simple SQL scripts and my daily routine was varied involving
+anything from data collection, some basic data interpretation &amp; general project activities.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>The Lenfest Project is a collaboration with researchers, managers, and policymakers in four countries
+(Chile, India, USA and Australia) to provide guidance for selecting indicators of ecosystem structure
+and function, and operationalising Ecosystem Based Fishery Management (EBFM) in a diversity of contexts.
+The Australian case study is looking at how the chosen indicators can be applied to the Southern and
+Eastern Scalefish and Shark Fishery (SESSF) as this fishery has many species caught and differing gear
+types used. The fishery data was downloaded from an Australian Fisheries Management Authority (AFMA)
+Oracle database (hosted by CSIRO) and consists of 6919734 rows of data. The SESSF is made up of 11
+sub-fisheries which catch at total of 469 species. One of the indicators to be looked at, is how species
+compostition of the catch has changed over time. To this, the imported data was filtered to removed
+all non-year values, then due to the large amount of data, the species that were caught over 200 times
+were extracted by fishery sub-type for each year.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>I have been using R Studio to visualise the data, picking up skills in importing &amp; tidying data,
+converting data to a required format, graphing the data and presenting it in Rmarkdown. I have also
+completed a draft Research Data Management Plan for the project</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>I’ve really liked using the plotting features, especially gganimate to help bring data to life. Shiny looks good too!</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>My time went mainly on importing and filtering down my data as it is a large dataset to start
+with (nearly 7 million rows). I also spent time using ggplot to graph my data, then think about
+what I really needed to show and subset my data again, before regraphing.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>What I would like to do in the future is help develop a Shiny app that allows a user to calculate
+the indicators based on information provided with a tab for each indicator grouping eg biological,
+social, economic. This will allow managers and policy makers to get a feel of how the fisheries
+have changed over time.</p>
+<p><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<strong>Tables</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Year
+</th>
+<th style="text-align:left;">
+Species name
+</th>
+<th style="text-align:left;">
+Sub-fishery
+</th>
+<th style="text-align:right;">
+Catch amount (kg)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1977
+</td>
+<td style="text-align:left;">
+Centroberyx gerrardi
+</td>
+<td style="text-align:left;">
+Great Australian Bight - Trawl fishery
+</td>
+<td style="text-align:right;">
+35445
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1977
+</td>
+<td style="text-align:left;">
+Nemadactylus macropterus
+</td>
+<td style="text-align:left;">
+Great Australian Bight - Trawl fishery
+</td>
+<td style="text-align:right;">
+22958
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1977
+</td>
+<td style="text-align:left;">
+Plagiogeneion spp
+</td>
+<td style="text-align:left;">
+Great Australian Bight - Trawl fishery
+</td>
+<td style="text-align:right;">
+12596
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1977
+</td>
+<td style="text-align:left;">
+sharks - other
+</td>
+<td style="text-align:left;">
+Great Australian Bight - Trawl fishery
+</td>
+<td style="text-align:right;">
+8191
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1977
+</td>
+<td style="text-align:left;">
+Nelusetta ayraudi
+</td>
+<td style="text-align:left;">
+Great Australian Bight - Trawl fishery
+</td>
+<td style="text-align:right;">
+7671
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup></sup> Data taken from AFMA database
+</td>
+</tr>
+</tfoot>
+</table>
+<p><strong>Images from a file</strong></p>
+<p><img src="resources/img/len_benchmarks_for_ecosystem_assessment_indicators_16x9.jpeg" width="360" />
+Fishing boats from Valparaiso, Chile</p>
+<p><strong>Plots from R</strong>
+<img src="Linda_poster_files/figure-html/standard-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Animations just to show off a digital poster</strong>
+<img src="Linda_poster_files/figure-html/anim-1.gif" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>My experience of Data School - FOCUS is that it has been really worth while - both from the course
+content side as well meeting the other course participants.
+Stephen and Nat have worked hard to put together a really fantastic course. I feel much more confident
+in my ability to solve data questions.</p>
+<p>Even though I’m yet to apply most of what I have learnt across the six projects I work on, memebers of
+my group now know of my skills (I even presented this poster at a team mini symposium!).
+Out of the six projects I’m currently on, I’ve drafted four Research Data Management Plans and think in a more
+“data like” way. I even look at plots and figure out how to do them in ggplot…</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

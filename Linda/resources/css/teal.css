@@ -1,0 +1,58 @@
+/* unvisited link */
+a:link {
+color: #007377;
+}
+
+/* visited link */
+a:visited {
+color: #007377;
+}
+
+/* mouse over link */
+a:hover {
+color: #2DCCD3;
+}
+
+/* selected link */
+a:active {
+color: #007377;
+}
+
+.BU_block a {
+  color: #007377;
+  text-decoration: none;
+}
+
+.BU_block a:hover {
+  color: #007377;
+}
+
+.introduction {
+  color: #007377;
+}
+
+code {
+  background-color: #2DCCD324;
+  color: #007377;
+}
+
+.poster_body h1 {
+  color: #2DCCD3; 
+}
+
+.poster_body h2 {
+  color: #007377; 
+}
+
+#new_refs h1 {
+  color: #2DCCD3;
+}
+
+.table th {
+  background-color: #007377;
+  color: #ffffff;
+}
+
+.table-striped tr:nth-child(odd) {
+  background-color: #E9E9E9;
+}
