@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Gordon McLachlan" />
+
+<title>Automated processing of soil core data.</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 132pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.24);
+width: 90%;
+height: calc(1189mm * 0.63);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 36pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 93%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Automated processing of soil core data.</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Gordon McLachlan</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/gordonmclachlan/GMCL_synthesis_project">www.github.com/gordonmclachlan/GMCL_synthesis_project</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture &amp; Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/CSP_photo1.png">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Data School can teach an old dog new tricks.
+If I am not away on fieldtrips you can find me processing soil samples in the Butler Laboratory on Black Mountain, ACT.
+Before Data School I had heard the terms; R, Python, Bowen, Pearcey, ggplot, Data Access Portal &amp; machine learning. I was unable to learn them as was I too busy working to deliver project milestones on time, and balancing work &amp; family life.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>Goal: Pipeline for processing core sensing platform (CSP) data in a reproducible automated way.</p>
+<p>This involved generating data by scanning 22 cores from the Macquarie Bogan Field-study, retrieving the data from the CSP Linux computer and storing the data on Bowen. After which I needed to create a tidy data frame collecting data from directory names, csv files containing gamma &amp; spectra data, other files with gamma calibration &amp; GPS data.</p>
+<p>The NIR spectra &amp; Gamma counts needed processing before storing in a tidy data format. The NIR spectra needed pre-processing steps to filter raw spectra and used an existing soil-water library to estimate soil water content and correct spectra for soil moisture attenuation. Brendan Malone was a big help in guiding me through the spectra processing.</p>
+<p>Finally producing an R-Markdown report with tables &amp; graphs for each individual core.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>All the skills used in this project were learnt from attending Data School.</p>
+<p>The Research Data Management Plan was important at the start to confirm what data I could use &amp; how.</p>
+<p>FileZilla &amp; Putty were important to retrieve data from CSP Linux computer.</p>
+<p>R was used to process NIR spectra &amp; Gamma data.</p>
+<p>ggplot was used to visualise the core data.</p>
+<p>R-Markdown was used to produce a report for each core.</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>I have really enjoyed using R and surprised myself what I can achieve with it.
+Back in the lab I can see other uses for R in automating lab data analysis &amp; visualisation.</p>
+<p>ggplot is cool for data visualisation, but I am still learning new tricks to use it effectively.</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>The code to pull out the data for the initial data-frame took a lot of time, trying to get the right information from each directory title &amp; csv file. Also, the loop in the R code to correctly collect the data for the 22 cores from the 42 directories took a while to perfect.</p>
+<p>All the pre-processing of the spectra data and the use of gamma data took a while to understand &amp; implement.</p>
+<p>When something didn’t work in the R coding my solution was to break it into little steps and make sure each step worked before moving onto the next step. I had to do this when creating loops which worked. Also, Google is your friend in solving error messages.</p>
+<p>The best time to be creative and productive in solving any problems varied for me; morning, afternoon, a whole day. A few times I would put it aside and come back later and solved it quickly.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>The Markdown report for each core could be improved by adding the images captured by CSP camera.</p>
+<p>Also capturing more soil attributes from the spectra would be useful, such as: carbon, pH, &amp; clay content. But this may be dependent on access to visNIR library for each attribute.</p>
+<p>I need to investigate if there are other ways to improve bulk density measurements with data from CSP.</p>
+<p>I’d like to investigate the package “inspectr” and any other packages that may be useful in processing and analysing spectra data.</p>
+<p>I didn’t use python in my Data school project, but I don’t want to lose this skill, I will have to make time use it. Also, machine learning is something I wish to continue investigating for larger datasets.</p>
+<p><br/>
+<br/>
+<br/></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-1"></span>
+<img src="CoreScannerHead_160606.jpg" alt="Core Sensing Platform" width="80%" />
+<p class="caption">
+Figure 1: Core Sensing Platform
+</p>
+</div>
+<p><br/>
+<br/>
+<br/></p>
+<div class="figure" style="text-align: center"><span id="fig:standard-plot"></span>
+<img src="GMCL_Dataschool_Synthesis_Project_files/figure-html/standard-plot-1.png" alt="Example CSP data" width="100%" />
+<p class="caption">
+Figure 2: Example CSP data
+</p>
+</div>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>Tony, Seija, &amp; I have already given a brief talk about the Data Access Portal &amp; Research Data Management Plans to Butler Lab to encourage awareness &amp; discussion. We have also been asked to talk to our group about our Data School experience &amp; project at some point in the future.</p>
+<p>I was nervous about Data School and whether I would be able to handle it, but lessons were adjusted and everyone in the cohort was able to learn. The teachers/tutors/mentors were very knowledgeable, helpful &amp; wonderful. Data School was able to teach this old dog new tricks.</p>
+<p>I was encouraged by my group leader, Ben Macdonald, to apply for Data School. It has been a privilege to spend the time in Data School and learn these new skills. I can see other ways of automating the analysis &amp; visualisation of data from soil physics measurements we make in the laboratory.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

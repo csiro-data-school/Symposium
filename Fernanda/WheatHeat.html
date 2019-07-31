@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Fernanda Dreccer" />
+
+<title>Exposure of wheat to heat across Australia</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 120pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.24);
+width: 90%;
+height: calc(1189mm * 0.63);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Exposure of wheat to heat across Australia</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Fernanda Dreccer</strong></h3>
+<h5 id="affiliation">Crop Adaptation and Modelling team</h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/Dreccer 2017b.png">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I am a crop physiologist and crop simulation modeller. I love maths and stats and the quantitative side of biology and genetics. Attending Data School gave me the opportunity to upgrade my skills and interact with people who are more proficient, opening doors to collaboration.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>Wheat crops around the country are increasingly exposed to failure, yield and quality losses adjudicated to higher temperatures, environmental demand and climate variability. This study aims to gather, compile and analyse information on when these changes in environmental variables are occurring in relation to different stages of crop development, with what pattern and frequency.</p>
+<p>To do this, environmental variables or derived indices were based on gridded soil and weather information across the country (5x5km) (<a href="https://www.bom.gov.au">www.bom.gov.au</a>) and used to quantify trends from 1957 to 2017. The crop simulation model APSIM NextGen (<a href="https://doi.org/10.1016/j.envsoft.2018.02.002">Holzworth et al., 2018</a>) was used to simulate the phenology of 60 cultivars in 10 sowing dates and the start and end date of ten different crop phases. Only a cultivar of of intermediate maturity sown at recommended sowing date is presented here.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>GitHub for version control, HPC and R for processing and visualising data.</p>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Tidying, processing, and inspecting the data dispersion with different statistical techniques absorbed most of my time. The scripts were run from the command line, using SLURM to iterate through the folders picking different cultivar <span class="math inline">\(\times\)</span> sowing date combinations for each crop stage. Special thanks to my mentor for teaching me how to do that.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>This project will continue with more data analysis and association studies.
+I would like to learn more data visualisation to create meaningful graphs for this type of data set, improving on available formats.</p>
+</div>
+<div id="main-findings-applying-data-school-skills" class="section level1">
+<h1>Main findings applying Data School skills</h1>
+<p>Different to the changes in the date of last frost, the first day of heat (T&gt;32°C, 20th percentile) occurred consistently earlier, up to more than half a day earlier (-0.65 d/year) (Figure 1). This reduces the ‘safe flowering’ window.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig1"></span>
+<img src="resources/img/Picture1.png" alt="Trends in last frost and first heat day between 1957 and 2017. Coloured cells where the trend was significantly different from 0, grey cells indicate no change." width="90%" />
+<p class="caption">
+Figure 1: Trends in last frost and first heat day between 1957 and 2017. Coloured cells where the trend was significantly different from 0, grey cells indicate no change.
+</p>
+</div>
+<p>The early reproductive period and the grain filling period were analysed per growing region (Figure 2).</p>
+<div class="figure" style="text-align: center"><span id="fig:fig2"></span>
+<img src="resources/img/picture2.png" alt="Australian cropping belt and regions." width="60%" />
+<p class="caption">
+Figure 2: Australian cropping belt and regions.
+</p>
+</div>
+<p>Maximum temperature increased significantly in both phases (Figure 3), resulting in significant shortening of the grain filling period, while minimum temperature exhibited little change.</p>
+<div class="figure" style="text-align: center"><span id="fig:fig3"></span>
+<img src="resources/img/trend_plot.jpeg" alt="Trends in maximum and minimum temperature (1970 to 2017) across Australian regions for the Early Reproductive and the Grain Filling period. Asterisk indicate significant differences at P&lt;0.001 (&amp;ast;&amp;ast;&amp;ast;), P&lt;0.01 (&amp;ast;&amp;ast;) and P&lt;0.05(&amp;ast;). Left asterisks are  significance for Tmin and right for Tmax." width="70%" />
+<p class="caption">
+Figure 3: Trends in maximum and minimum temperature (1970 to 2017) across Australian regions for the Early Reproductive and the Grain Filling period. Asterisk indicate significant differences at P&lt;0.001 (***), P&lt;0.01 (**) and P&lt;0.05(*). Left asterisks are significance for Tmin and right for Tmax.
+</p>
+</div>
+</div>
+<div id="conclusions" class="section level1">
+<h1>Conclusions</h1>
+<p>Analysis of weather variables during the cropping season and per crop phase can define targets for research and development. The increase in maximum temperature before flowering and during grain filling negatively impacts phase duration, spike fertility and grain growth.</p>
+<p>This study would not have been possible without the learnings and tools offered in Data School.</p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>I am based in Toowoomba, QLD, and was not able to attend many classes in person. Distance education has its challenges! However, thanks to the good predisposition of the teachers and a fabulous student cohort, I did not feel left out. I hope my experience and feedback can help future DS content around the country. I now feel more able to help point others in the right direction for training.</p>
+<p>More personally, I am excited about how much more time I will have to think about problems, hypotheses and solutions (once I really get good at this!) rather than processing data and be creative working with others with the new tools I have at hand.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "true";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

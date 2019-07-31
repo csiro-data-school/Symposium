@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Eva Zinkovsky" />
+
+<title>AgScores Weather Analytics</title>
+
+<script src="AgScoresWeatherAnalyticsPosterEvaFinal_files/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-sky.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.24);
+width: 90%;
+height: calc(1189mm * 0.63);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 33pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 92%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/sky.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">AgScores Weather Analytics</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Eva Zinkovsky</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/EvaZinkovsky/poster">www.github.com/EvaZinkovsky/poster</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/photo1.jpg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I started Data School as an Administration Officer for Ag&amp;F’s Program 8 with no real experience in data management but had dabbled ever so slightly in coding. As of the first of July our program merged with Program 7. The new program is called Landscapes and Global Change and I have a new role which will ensure best practice data archiving and management systems for our program. I will also be embedded into projects to provide project, data and analytic support. :)</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>This project will produce visualisations of statistical comparisons between</p>
+<ul>
+<li><p>weather observation data provided by the State of Queensland (SILO database)</p></li>
+<li><p>weather forecast data from the Bureau of Meteorology (ACCESS-S forecast model)</p></li>
+</ul>
+<p>Only one location will be used (Birchip, Victoria, latitude=-35.99 &amp; longitude=142.92)</p>
+<p>AgScores will produce results to inform climate scientists of the efficacy of climate predictions, from the point of view of Agricultural productivity (wheat yield potential). This work enables climate scientists to debug their climate models when their predicted wheat yield potential does not match the predicted wheat yield potential of APSIM + SILO.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>I have used R, Python, Anaconda, Jupyter, xarray, requests, io, pandas, datetime, numpy, Matplotlib, from mpl_toolkits.mplot3d import Axes3D, Seaborn, scipy.stats, regex</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>I have a couple of favourite tools.</p>
+<p><img src="resources/img/regex.jpg" style="float: left; margin-right: 2%" width="100" />
+allows you to pull out the exact subset of data that you need.</p>
+<p><img src="resources/img/matplotlib.png" style="float: left; margin-right: 2%" width="200" />
+The second is matplotlib which allows you to make lovely visualisations from your data.</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>by manipulating data to get it into shape. And then reshaping it to get it right again. I had help with the correct commands to pull the data out of the databases and then I was responsible for doing the manipulations.</p>
+<p>…and making plot after plot after plot. Most of these didn’t really see the light of day but some are here on the poster and will help help to make the AgScores tool easier to use and interpret.</p>
+<p><img src="resources/img/emoji.jpg" style="float: right; margin: 2%" width="200" />
+Embarrassingly, I spent a lot of time trying to work out paths to where my work was stored and working out protocols that I really should remember.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>I need to plot more metrics that are useful and will tell a story. It would be good to develop a Graphical User Interface to make the tool even easier to use. R Shiny is a good tool for this but the code needs to be in python. There are a few platforms to choose from - PYQT5, Tkinter, WxPython, Kivy and PyForms. Tkinter seems to be the most popular.</p>
+</div>
+<div id="tables" class="section level1">
+<h1>Tables</h1>
+<table style="width:20%; margin-left: auto; margin-right: auto;" class="table table-striped">
+<thead>
+<tr>
+<th style="text-align:right;">
+ens_rad
+</th>
+<th style="text-align:right;">
+ens_tmax
+</th>
+<th style="text-align:right;">
+ens_rain
+</th>
+<th style="text-align:right;">
+ens_tmin
+</th>
+<th style="text-align:right;">
+silo_rad
+</th>
+<th style="text-align:right;">
+silo_tmax
+</th>
+<th style="text-align:right;">
+silo_rain
+</th>
+<th style="text-align:right;">
+silo_tmin
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+18.3
+</td>
+<td style="text-align:right;">
+24.2
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+9.9
+</td>
+<td style="text-align:right;">
+20.3
+</td>
+<td style="text-align:right;">
+23.9
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8.0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17.0
+</td>
+<td style="text-align:right;">
+24.0
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+20.1
+</td>
+<td style="text-align:right;">
+22.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+11.1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16.0
+</td>
+<td style="text-align:right;">
+24.3
+</td>
+<td style="text-align:right;">
+0.2
+</td>
+<td style="text-align:right;">
+9.2
+</td>
+<td style="text-align:right;">
+20.1
+</td>
+<td style="text-align:right;">
+26.0
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+8.4
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+17.5
+</td>
+<td style="text-align:right;">
+24.5
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+9.8
+</td>
+<td style="text-align:right;">
+19.0
+</td>
+<td style="text-align:right;">
+28.3
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+13.0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+16.9
+</td>
+<td style="text-align:right;">
+25.8
+</td>
+<td style="text-align:right;">
+0.0
+</td>
+<td style="text-align:right;">
+11.0
+</td>
+<td style="text-align:right;">
+19.0
+</td>
+<td style="text-align:right;">
+29.1
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14.0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13.8
+</td>
+<td style="text-align:right;">
+25.1
+</td>
+<td style="text-align:right;">
+0.7
+</td>
+<td style="text-align:right;">
+11.1
+</td>
+<td style="text-align:right;">
+16.4
+</td>
+<td style="text-align:right;">
+29.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+14.7
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 1. Combined ENSEMBLE and SILO data dataframe (header only)</strong></p>
+</div>
+<div id="plots" class="section level1">
+<h1>Plots</h1>
+<p><strong>Figure 1. Density Graphs comparing Forecast (ensemble) data with Observed (silo) data</strong>
+<img src="resources/img/kdeplots.png" width="1200" /></p>
+</div>
+<div id="acknowledgements" class="section level1">
+<h1>Acknowledgements</h1>
+<p>Data School Teachers: Loretta Clancy, Daniel Collins, Carmi Cronje, Adrian D’Alessandro, Ondrej Hlinka, Mikaela Lawrence, Kerensa McElroy, Terry Neeman (ANU), Stephen Pearce, Jared Raynes, Fran Samsing, Andrew Spriggs, Chris Watkins, Alex Whan</p>
+<p>Mentors: Jared, Ryan Farquharson, Javi Navarro Garcia, Nat Lui</p>
+<p>Students: James Broadbent, Rosangela Devilla, Fernanda Dreccer, Shok Jalilov, Emmett Leyne, Tracey May, Gordon McLachlan, Tony Nadelko, Seija Tuomi, Shaun Verrall, Yingying Yu</p>
+<p>My Family: Alex, Christina and Julia xxx</p>
+<p>…and of course Michael Battaglia :)</p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>I thought Data School was a fantastic experience. To have the opportunity to spend five months learning something new in a course that was run totally in-house was an unbelievable opportunity. I really enjoyed the camaraderie with the other students and the freedom to study again. The course facilitators were all very knowledgeable and very patient! I enjoyed pretty much all that we covered. (Stats was hard)</p>
+<p>I have just started a newly created Program Data Support position for our program which will put many of my newly acquired skills to use. I will be liaising with project leaders at inception to assist them in creating Data and Software Management Plans and again at end of projects to confirm data and records archival. I have received very supportive correspondence from program members who are looking forward to working with me to achieve this.</p>
+<p>I will also be continuing this project. I have already attended a three day “SPRINT” in Hobart where those working on the project came together to work on the project at the same time without any interruptions. (Look at me, coding, with L plates and lots of people to hold my hand)</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>
