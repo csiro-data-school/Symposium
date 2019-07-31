@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Shaun Verrall" />
+
+<title>Massive Model Output Visualisation</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.24);
+width: 90%;
+height: calc(1189mm * 0.62);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 32pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 2%;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  width: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Massive Model Output Visualisation</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Shaun Verrall</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/ver078/output-hpc-vis">www.github.com/ver078/output-hpc-vis</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I am a software engineer working on Agriculture Production SIMulator (APSIM) software.
+APSIM is a process based model aimed at simulating crop and animal growth at the paddock scale.
+It outputs customisable reporting data in space delimited text files at daily, month, yearly or crop event time scales.
+APSIM is used to create simulations that mimic the real world to generate what if scenarios for farming management.
+Output is compared against real world experiments in order to improve the process based science in the model.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>Clusters are currently been used more and more to generate massively large data sets of output files.
+It is not uncommon to run millions of simulations on clusters with millions of corresponding output files.
+These large numbers of output files pose a serious problem in analysis of the data.
+Standard approach when analysing data is to first plot or visualise the data and then once an understanding of your data is obtained then filter out only the data of interest.
+This approach can no longer be maintained as the sheer quantity of data causes problems for visualisation tools.</p>
+<p>My approach is to tip the standard approach on its head, and filter first using customisable sensibility filters applied to each output file and then visualise the data that either passes or fails these tests.
+In order to speed up the filter process this is done in parallel using the same sort of clustering technology that originally ran the simulations.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>The CSIRO High Performance computing cluster using Slurm array jobs is used to run a customised R script in parallel on every output file in the dataset.
+Standard R plotting packages are used to plot the data eg. ggplot.</p>
+<p>I did not know R before data school or how to run jobs on the CSIRO High Performance Computer cluster.</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>The Git Bash command line has been a surprise favourite of mine.
+Lets you combine the power of command line Git with the standard tools of ssh for logging in and running jobs on the cluster.</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Setting up the Slurm array jobs. Automating this part is proving most difficult.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>Create an R package that allows users can easily install.
+This will allow users from R studio running on their desktop to run the filtering on the cluster and then plot and visualise the results in R studio on their desktop.</p>
+<p>Possible idea to test would be to visualise the data spatially on a map of Australia using leaflet or as a shiny app that uses javascript to select points on the map and display more detailed information about the point selected.</p>
+<p><br/>
+<br/>
+<!-- **Tables** --></p>
+<!-- ```{r mytable, out.width='100%', echo = T} -->
+<!-- knitr::kable(head(gapminder, n = 5), format = "html") %>%  -->
+<!--   kable_styling("striped") -->
+<!-- ``` -->
+</div>
+<div id="sample-data" class="section level1">
+<h1>Sample Data</h1>
+<div id="single-simulation-data-this-x-600000" class="section level3">
+<h3><strong>Single Simulation Data (this x 600000)</strong></h3>
+<p><img src="resources/img/simdata.PNG" /></p>
+</div>
+<div id="meta-data-head" class="section level3">
+<h3><strong>Meta Data (head)</strong></h3>
+<p><img src="resources/img/metadata.PNG" /></p>
+</div>
+<div id="single-ouput-file-out" class="section level3">
+<h3><strong>Single Ouput File (out)</strong></h3>
+<p><img src="resources/img/data.PNG" style="width:100.0%" /></p>
+</div>
+<div id="filtered-output-file-with-provenance-maintained" class="section level3">
+<h3><strong>Filtered Output File (with Provenance maintained)</strong></h3>
+<p><img src="resources/img/simdatafiltered.PNG" /></p>
+<!--![](resources/img/data.png){width=180px} -->
+<!-- **Plots from R** -->
+<!-- ```{r standard-plot, out.width='100%', fig.align='center', fig.height= 3, fig.width=8} -->
+<!-- gapminder %>%  -->
+<!--   filter(year == 1987) %>%  -->
+<!--   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) + -->
+<!--   geom_point() + -->
+<!--   scale_x_log10(labels = function(b) format(b, scientific = F)) + -->
+<!--   scale_size(trans = "sqrt", guide = "none") + -->
+<!--   scale_color_brewer(palette = "Set1") + -->
+<!--   theme_linedraw() + -->
+<!--   theme(legend.position = "bottom") -->
+<!-- ``` -->
+<!-- **Animations just to show off a digital poster** -->
+<!-- ```{r anim, fig.align='center', cache=TRUE, out.width="100%"} -->
+<!-- # cache=TRUE because the animations take a while to render -->
+<!-- # so we don't want to render them unless we change the code in here -->
+<!-- anim <- gapminder %>%  -->
+<!--   ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent, size = pop)) + -->
+<!--   geom_point() + -->
+<!--   scale_x_log10(labels = function(b) format(b, scientific = F)) + -->
+<!--   scale_size(trans = "sqrt", guide = "none") + -->
+<!--   scale_color_brewer(palette = "Set1") + -->
+<!--   theme_linedraw() + -->
+<!--   theme(legend.position = "bottom") + -->
+<!--   transition_time(year) + -->
+<!--   ease_aes("cubic-in-out") -->
+<!-- animate(anim, nframes = 200, fps=20, detail = 2, start_pause = 20, end_pause=20,  -->
+<!--         width=1200, height=800, res = 200 -->
+<!-- ) -->
+<!-- ``` -->
+<!-- # My Data School Experience -->
+<!-- This poster is mostly about your synthesis project. However we would also like to hear about other -->
+<!-- parts of your Data School experience. What aspects of the program did you really enjoy? How have you -->
+<!-- been applying the skills you have learned in your daily work? Have you been able to transfer this  -->
+<!-- knowledge to your team members? Concrete examples demonstrating this would be useful here -->
+<!-- (meetings/talks/collaborations/new roles). Any descriptions of the personal impact the program has  -->
+<!-- had are welcome here as well -->
+<!-- This section will also be shifted outside the two column format (to the bottom -- the focus of this -->
+<!-- poster should be on your achievements in your project!). As with the Introduction, don't change the -->
+<!-- name of this section otherwiseit will not be able to be moved. -->
+</div>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>
