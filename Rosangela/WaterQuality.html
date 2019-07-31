@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Rosangela Devilla" />
+
+<title>Using Machine Learning to predict chlorophyll-a for water quality monitoring and management</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-teal.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 4%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 100pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 2%;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.25);
+width: 90%;
+height: calc(1189mm * 0.63);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+  padding-bottom: 6%;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/teal.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Using Machine Learning to predict chlorophyll-a for water quality monitoring and management</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Rosangela Devilla</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/rade2019/Synthesis">www.github.com/rade2019/Synthesis</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/picture.jpg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I’m an Ag&amp;F Experimental Scientist from the Plant &amp; Oil Engineering Group working on the development and application of analytical chemistry methods using mass spectrometry.
+Previous to Data School, analyses of data were performed using Excel sheets and statistical software packages.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>My Synthesis Project aims to use Machine Learning to predict chlorophyll-a in ocean waters for monitoring and management of water quality.</p>
+<p>Chlorophyll-a concentration is an indicator of the ecological health of aquatic environments, and its distribution and intensity may reveal regional eutrophication and the levels of primary productivity.
+The data obtained for this study were collected during cruises conducted in five regions around Australian coast, including areas of high complexity biogeochemical processes.</p>
+<p>This project analyses the performance of a machine learning model using multiple regression to predict chlorophyll-a concentrations from a set of environmental features.
+The accuracy of each model is evaluated via the coefficient of determination (R2) and the mean absolute percentage error (MAPE). Optimization algoritms such as Stochastic Gradient Descent (SGD) method were used to find the best fit. Lasso Regression was also used for variable selection and improvement of prediction accuracy.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>For this project, I used the following digital tools:</p>
+<ul>
+<li>Python - SKlearn, numpy, matplotlib, seaborn, pandas, MICE-SKlearn,
+statsmodels</li>
+<li>GitHub</li>
+<li>GitBash</li>
+</ul>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Most of the time was dedicated to preparation and pre-processing of data. The selection of the right tools for data imputation and standardization as well as getting to know the data and understanding relationships and behaviour were the most time consuming aspects of the project.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>The next steps will involve a comparison of performances using different machine learning approaches.</p>
+<p>I aim to carry on developing skills using Machine Learning aproaches and other Data School acquired skills (Python and R coding) in the analytical chemistry field and mass spectrometry imaging.</p>
+<p><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<p><strong>Raw data: partial visualization (total data: 24 features, 296 obs, 7104 datapoints)</strong></p>
+<p><img src="resources/overviewred.png" style="width:50.0%" /></p>
+<p><strong>Data scaling: comparing different scalers applied on data</strong>
+<img src="resources/scaler1.png" style="width:60.0%" />
+<img src="resources/scaler2.png" style="width:60.0%" /></p>
+<p><strong>Predicted X Actual: R score 0.79 </strong>
+<img src="resources/prediction.png" style="width:95.0%" /></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>Data School has been a fantastic experience. Machine Learning, statistical modelling, R and Python are my favourite tools. The data analysis methods and techniques learned in Data School are an essential component of modern approaches towards dealing with scientific data. The skills acquired in Data School will be applied in my daily work and certainly will improve productivity by automating the processing and analysis of data generated by analytical chemistry instrumentation.
+The methods will also be applied for data standardization which will transform the acquired data into a consistent and reproducible format, making it easier to analyse.
+I plan to continue improving my skills in ML, statistical modelling and coding using Python and R.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

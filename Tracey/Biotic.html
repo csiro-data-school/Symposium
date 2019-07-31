@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Tracey May" />
+
+<title>Shiny Biotic</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.25);
+width: 90%;
+height: calc(1189mm * 0.62);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+  padding-bottom: 6%;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 92%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  width: 170px;
+  object-fit: cover;
+  object-position: 0 0;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Shiny Biotic</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Tracey May</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/github.com/MaybeT/Shiny-App">www.github.com/github.com/MaybeT/Shiny-App</a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DAP: <a href="https://doi.org/10.25919/5bccfde3ac74f" class="uri">https://doi.org/10.25919/5bccfde3ac74f</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Crop Improvement for Novel Plant Product, Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/photo.jpg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I started with CSIRO in Alice Springs and transferred to the cotton research institute in Narrabri NSW in 2015. Prior to Data School I could adapt existing code in R or Python; I was largely self-taught. Currently, I manage field measurements, calibration and repair of canopy temperature senors; I organise and manage data flows, clean and analyse data to calculate canopy temperature stress hours.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>My project aim is to develop an interactive and dynamic tool that can be used to visualise, communicate and demonstrate the impact of changes in biotic parameters on irrigation decisions in cotton. The tool will provide an interactive environment without the user needing to write scripts.
+Ultimately we hope to be able to access, download and run routine stress calculations with the data set.
+This project has been a process of discovering what Shiny is capable of, and then adapting my app to various senarios that may be useful.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>The R language and R Shiny have been my principal tools. Shiny is specifically designed to create interactive web applications using the R language.
+Shiny breaks readily, so GitHub and a little Bash have formed an exquisite layer of torture and torments that I am determined to master.
+Previously I used R at very much a beginner’s level. I had not heard of Shiny, or ever imagined being able to build an interactive web application. Today, I am excited about coding!</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>R, learing some of the power of R statistics, Shiny, Git Hub.</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Learning Shiny and how to effectively use reactive functions, how to apply a function in R, and how to layout in shiny.
+Embarrassingly, the pathways and reading the precursor tables of a large R script that has been developed over the past 2 years was a very challenging hurdle. Having shiny as an interactive tool will add a critical element of reproducibility and accessibility to this particular set of data, as well as the calculations.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>As a result of the work on my synthesis project I am looking forward to developing tools for data dissemination, and seeing where I can take Shiny in terms of functionality and visualization.
+I am currently undertaking a statistical analysis experiment report as a result of Dataschool.
+I am looking forward to optimising and automating our team’s data checking, cleaning and processing workflows for the coming season.
+I am keen to develop new digital skills in machine learning for large scale thermal imagery in the future.</p>
+<p><br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<p><strong>Select file columns ; choose file type ; select rows ; download or visualise data.</strong>
+<img src="resources/img/tablefortheposter.PNG" style="width:80.0%" /></p>
+<p><strong>Plot to show selected calculated parameters to display</strong>
+<img src="TM_Shiny_files/figure-html/standard-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Shiny Application for viewing various parameters for the 15 minute canopy temperature data.</strong>
+<img src="resources/img/bottomGraph.PNG" width="1200" /></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>The most enjoyable part of Data School for me was the learning environment, the people taking up the challenge of learning new skills together and the experts sharing their knowledge.<br />
+I really enjoyed finally understanding the power of R with respect to statistical analysis.<br />
+The most intruguing part of Data School was the machine learning. I am really looking forward to opportunities to develop capability in using these techniques to analyse imagery from new thermal sensors.
+The Shiny app will assist with optimising reporting and data flows in our everyday work. It will be a useful tool that is fairly simple to construct, in being able to communicate with our stakeholders.
+I will definately be using the skills I have aquired through data school in my everyday work. The resulting efficiencies will mean that I am working collaboratively to complete statistical analyses and reports for scientists.<br />
+I am in the process of recruiting to our FAIR data managment support group here.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="James A. Broadbent" />
+
+<title>Peptide specificity in the UniProt</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.23);
+width: 90%;
+height: calc(1189mm * 0.65);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Peptide specificity in the UniProt</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>James A. Broadbent</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="github.com/jamesbroadbent/SynBroad.git">github.com/jamesbroadbent/SynBroad.git</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/image.png">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I am an analytical chemist from the Molecular Analysis Team in St Lucia, QLD. Our team specializes in proteome analysis, the large scale investigation of proteins. I had some experience with R prior to dataschool but now I am also happy to write in Python and see opportunities to code everywhere!</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>Food contaminants are a common cause of alergic reaction. Accurate food labelling is critical for consumers to make informed decisions regarding their choice of foods. Our laboratory specialises in the detection of food components or contaminants using the analytical chemistry technique known as liquid chromatography - mass spectrometry. The specific components that we detect are called peptides. These compounds are bio-polymers, which are produced when proteins are chopped into smaller pieces using an enzyme. The resulting peptide sequences may be specific to a single protein in a single species, or may be found in multiple different proteins and/or species. It is important to know how many and which species a peptide may be found in, so that when a peptide is used to detect and quantify a contaminant, one can be certain that the peptide is specific for the target contaminant.</p>
+<p>This project set out to access the Universal protein resource (UniProt) to retrieve species specificity information for any list of peptides. This information can then be used to determine if a peptide is suitable as a proxy when measuring a food component or contaminant.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>This project makes use of the Python language and was developed in the Jupiter Notebooks environment. It uses a suite of libraries to work with Microsoft Excel input and to manipulte the data.</p>
+<p>One critical tool that I learned during this project was requests. This library enabled me to access an Application Programming Interface (API) that interacts with the UniProt. I was then able to build code around the idea of accessing this API to search massive amounts of up-to-date data (~500,000,000 sequences) quickly.</p>
+<p>In addition to the requests library, I also used the following libraries for various data munging, manipulation and visualisation tasks, including:
+sys; re; requests; numpy; pandas; functools; time; glob; matplotlib; and, seaborn</p>
+<p>Prior to data school, I hadn’t writen a single piece of Python code. Now it may even be my favourite language!</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>I could not have made this project work without regex. It is so powerful at extracting exactly what you need from the mess that the UniProt API spits out. Check out <a href="http://Regex101.com">Regex101.com</a> for troubleshooting; it made a big difference for me.</p>
+</div>
+</div>
+<div id="challenges" class="section level1">
+<h1>Challenges</h1>
+<p>My main challenge was in creating regex that worked how I needed them to. I spent a lot of time making a very large regex that (eventually) did what I needed it to; however, a quick lesson from Andrew went a long way.</p>
+<p>My next challenge is to launch the tool onto the HPC. It works really well for a small to medium number of variables but it will be great to be able to scale the process up to any number of variables.
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/></p>
+<p><strong>What we want to know</strong></p>
+<p><img src="resources/img/ProtPep.PNG" width="1500" /></p>
+<p><br/>
+<br/></p>
+<p><strong>Getting the information I need</strong></p>
+<p><img src="resources/img/extractText.PNG" width="1500" />
+<br/>
+<br/>
+<br/></p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>This project has helped me to acquire a really good understanding of how to use APIs to access information from remote data sources. It has worked really well so far for small scale lists of peptides; however, when scaling up, the time required to complete the for loop blows out. To get around this I am exploring how to launch a HPC enabled version that can send many requests to the API at the same time.</p>
+<p>I have also been creating a suite of tools for our laboratory to use for automating manual point-and-click processes. Time saved so far = 5 days!</p>
+<p><br/>
+<br/>
+<br/>
+<br/></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>Data school has been a great environment to learn from the instructors but also from each other and through how the other students learn as well. Getting to know the other folks taking part was certainly a highlight, especially being able to meet up in Canberra and learn about what everyone does and is looking for in learning data science.</p>
+<p>It’s definitely a bit full on at the start when learning all of the different elements, such as: R, Bash, Git, Python, SQL, Regex… but the seeds of all of those bits of knowledge really take shape when the project work starts, whether it’s the big data project or the final synthesis project.</p>
+<p>Now when I’m looking at any specific task the first thing that I do is ask myself: “Am I better off scripting this?”; my manager has also started to ask the same thing and we’re really changing the way our team works when it comes to data analysis and saving time!</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

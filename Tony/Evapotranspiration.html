@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Anthony Nadelko" />
+
+<title>Machine Learning Evapotranspiration</title>
+
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.23);
+width: 90%;
+height: calc(1189mm * 0.65);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 38pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Machine Learning Evapotranspiration</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Anthony Nadelko</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="www.github.com/nad018/">www.github.com/nad018/</a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">CSIRO Agriculture &amp; Food - Landscapes &amp; Global Change Program</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/nad018.jpg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>I am a Research Technician in Soil Process &amp; Function with prior experience coding CRBASIC dataloggers, ladder logic PLC’s and C+ microcontrollers. My previous work pattern involved data visualisation and analysis in Excel, further processing in open-source software, then presenting results in Excel graphs and Word tables.</p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>The project objective was to develop a machine learning model of evapotranspiration (ET) in irrigated cotton using high frequency measurements from a variety of soil, crop canopy and meteorlogical sensor platforms.</p>
+<p>A set of 10 features were selected. Meteorological features included 10 Hz measurements of 3D wind speed, humidity, vapour pressure deficit, solar radiation and rainfall. Crop canopy features were temperature measurements of plant leaves, dry leaf reference and ambient air at minute intervals. Soil features consisted of hourly water content and temperature measurements. Target ET flux rates were calculated as the covariance of gas concentrations and vertical wind speed components.</p>
+<p>Replicated features were first averaged then feature data were reduced to 1 hour means. Missing timestamps were infilled, outliers removed and data gaps interpolated to complete the time series. Features were scaled then hyperparameters tuned by nested cross validation prior to Lasso and Ridge regression analysis. The inital iterations were trained chronologically on 80% of data and tested on the following 20% of data.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<p>Both R and Python were used in this project. R libraries used consisted of tidyverse, padr, imputeTS, lubridate, and scales. Python modules included numpy, pandas, scatter_matrix, pyplot, scale, cross_val_score, TimeSeriesSplit, Ridge, RidgeCV, Lasso, Lasso CV, mean_squared_error, r2_score. All of these digital tools were learned since starting Data School.</p>
+<div id="favourite-tool" class="section level2">
+<h2>Favourite tool</h2>
+<p>My favorite Python tool was Matplotlib for visualising data as it has capabilities not available from ggplot in R. In R I found the ‘padr’ library to be a very efficient tool for analysing dataframes for time series gaps, inserting rows and infilling missing timestamps.</p>
+</div>
+</div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Processing the raw data with differing file structures and from a variety of source directories took 80% of the project time. After raw data processing most of the remaining time was used aquiring the knowledge to develop the machine learning workflow and to make appropriate subjective decisions for machine learning validation, training and testing. One very surprising finding was the regression coefficients indicated the feature expected to be most important was ranked 3rd by the Ridge algorithm and dropped entirely by Lasso.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>Ongoing work would include improving predicted ET accuracy by sliding window validation to better incorporate the influence of the increasing crop canopy cover over time, as well as examining the effect of reduced feature sets. Also of value would be applying CO2 gas emmission rate measurements as the model target. Related time series models may also be developed for forecasting of ET and CO2 emission rates.</p>
+<p><br/>
+<strong>Field Measurement Site</strong>
+<img src="resources/img/systemcrop.jpg" width="1200" />
+<br/></p>
+<p><br/>
+<br/>
+<strong>Target and Features Dataframe</strong>
+<img src="resources/img/dataframe.jpg" width="1400" /></p>
+<p><br/>
+<br/>
+<strong>Machine Learning Results</strong>
+<img src="resources/img/eddy_covar.jpg" width="1400" /></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>I greatly enjoyed the ongoing support provided by the network of Data School trainers, mentors and previous participants and was very impressed by the wide range of skills taught. I have been applying my new skills to recent project reporting, processing data and generating visualisations not possible before Data School. I will be presenting my Data School experiences and sythesis project results to our local laboratory group. As well, my machine learning project will be an additional outcome for the research project that provided the dataset, and further model developments are anticipated.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>

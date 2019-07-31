@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"$if(lang)$ lang="$lang$" xml:lang="$lang$"$endif$>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+$for(author-meta)$<meta name="author" content="$author-meta$" />$endfor$
+$if(date-meta)$<meta name="date" content="$date-meta$" />$endif$
+<title>$if(title-prefix)$$title-prefix$ - $endif$$pagetitle$</title>
+
+$for(header-includes)$
+$header-includes$
+$endfor$
+
+$if(highlightjs)$
+<link rel="stylesheet" href="$highlightjs$/$if(highlightjs-theme)$$highlightjs-theme$$else$default$endif$.css" $if(html5)$$else$type="text/css" $endif$/>
+<script src="$highlightjs$/highlight.js"></script>
+<script type="text/javascript">hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+$endif$
+
+$if(highlighting-css)$<style type="text/css">$highlighting-css$</style>$endif$
+
+$for(css)$
+<link rel="stylesheet" href="$css$" $if(html5)$$else$type="text/css" $endif$/>
+$endfor$
+
+<style>
+@page {
+size: $poster_width$ $poster_height$;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: $poster_width$;
+height: $poster_height$;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-$theme$.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: $poster_width$;
+height: $poster_height$;
+padding: 0cm;
+}
+.title_container {
+width: $poster_width$;
+height: calc($poster_height$ * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: $title_textalign$;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: $columnline_width$;
+-moz-column-rule-width: $columnline_width$;
+column-rule-width: $columnline_width$;
+-webkit-column-rule-style: $columnline_style$;
+-moz-column-rule-style: $columnline_style$;
+column-rule-style: $columnline_style$;
+-webkit-column-rule-color: $columnline_col$;
+-moz-column-rule-color: $columnline_col$;
+column-rule-color: $columnline_col$;
+width: 100%;
+height: 100%;
+color: $body_textcol$;
+}
+.poster_title h1 {
+font-size: $title_textsize$;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc($poster_height$ * 0.23);
+width: 90%;
+height: calc($poster_height$ * 0.65);
+padding-top: calc($poster_height$ * 0.01);
+padding-bottom: calc($poster_height$ * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: $theme_darkcol$;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: $sectitle2_textcol$;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 95%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+$if(theme)$
+<link rel="stylesheet" href="resources/css/$theme$.css" $if(html5)$$else$type="text/css" $endif$/>
+$endif$
+
+</head>
+<body>
+
+$for(include-before)$
+$include-before$
+$endfor$
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">$title$</h1>
+<h2 id="subtitle">$subtitle$</h2>
+<h3 id="author">$author$</h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="$github_link$">$github_link$</a> $if(dap_link)$ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; DAP: $dap_link$ $endif$</h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">$business_unit$</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="$photo$">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+$body$
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+$if(math)$
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+var script = document.createElement("script");
+script.type = "text/javascript";
+var src = "$if(mathjax)$$mathjax$$endif$";
+if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+if (location.protocol !== "file:" && /^https?:/.test(src))
+src = src.replace(/^https?:/, '');
+script.src = src;
+document.getElementsByTagName("head")[0].appendChild(script);
+})();
+</script>
+$endif$
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+$for(include-after)$
+$include-after$
+$endfor$
+
+</body>
+</html>

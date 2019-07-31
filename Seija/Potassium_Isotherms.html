@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+
+<!--
+Font-awesome icons ie github or twitter
+-->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/brands.css" integrity="sha384-n9+6/aSqa9lBidZMRCQHTHKJscPq6NW4pCQBiMmHdUCvPN8ZOg2zJJTkC7WIezWv" crossorigin="anonymous">
+
+<!--
+Google fonts api stuff
+-->
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Calibri' rel='stylesheet'>
+
+<meta name="author" content="Seija Tuomi" />
+
+<title>Potassium Isotherms</title>
+
+<script src="Potassium_Isotherms_files/kePrint-0.0.1/kePrint.js"></script>
+
+
+
+
+
+<style>
+@page {
+size: 841mm 1189mm;
+margin: 0;
+padding: 0;
+}
+body {
+margin: 0;
+font-size: 32pt;
+width: 841mm;
+height: 1189mm;
+padding: 0;
+text-align: justify;
+font-family: Calibri;
+background-image: url(resources/background/poster-midday.svg);
+background-size: cover;
+background-repeat: no-repeat;
+}
+.poster_wrap {
+width: 841mm;
+height: 1189mm;
+padding: 0cm;
+}
+.title_container {
+width: 841mm;
+height: calc(1189mm * 0.145);
+text-align: left;
+overflow: hidden;
+color: #ffffff;
+}
+.poster_title {
+text-align: ;
+position: relative;
+float: left;
+height: 100%;
+margin-left: 5%;
+margin-right: 5%;
+margin-top: 6%;
+
+}
+.poster_body {
+-webkit-column-count: 2; /* Chrome, Safari, Opera */
+-moz-column-count: 2; /* Firefox */
+column-count: 2;
+-webkit-column-fill: auto;
+-moz-column-fill: auto;
+column-fill: auto;
+-webkit-column-rule-width: ;
+-moz-column-rule-width: ;
+column-rule-width: ;
+-webkit-column-rule-style: ;
+-moz-column-rule-style: ;
+column-rule-style: ;
+-webkit-column-rule-color: ;
+-moz-column-rule-color: ;
+column-rule-color: ;
+width: 100%;
+height: 100%;
+color: ;
+}
+.poster_title h1 {
+font-size: 140pt;
+margin: 0;
+border: 0;
+height: 45%;
+font-weight: normal;
+}
+.poster_title h2 {
+font-size: 50pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.poster_body_wrap{
+position: absolute;
+top: calc(1189mm * 0.25);
+width: 90%;
+height: calc(1189mm * 0.65);
+padding-top: calc(1189mm * 0.01);
+padding-bottom: calc(1189mm * 0.01);
+margin-left: 5%;
+margin-right: 5%;
+}
+.poster_title h3 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+margin-bottom: 1%;
+font-weight: normal;
+}
+
+.poster_title h3 strong {
+  text-decoration: underline;
+}
+
+.poster_title h5 {
+font-size: 28pt;
+margin: 0;
+border: 0;
+font-weight: normal;
+}
+.BU_block a {
+  text-decoration: none;
+}
+#BU_link {
+  margin: 0px 5%;
+  color: ;
+  font-size: 34pt;
+  font-weight: bold;
+}
+#BU {
+  text-transform: uppercase;
+  margin: 22px 5% -4px 5%;
+  color: #ffffff;
+  font-size: 38pt;
+  font-weight: bold;
+}
+.introduction {
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 17%;
+  font-size: 40pt;
+  display: flex;
+  align-items: center;
+}
+.introduction p{
+  margin-bottom: 0;
+  margin-top: 0;
+}
+img {
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+
+}
+.section {
+  padding: 0.2em;
+}
+.poster_body h1 {
+font-size: 60pt;
+margin-top: 2mm;
+margin-bottom: 2mm;
+font-weight: bold;
+}
+.poster_body h2 {
+color: ;
+font-size: 44pt;
+font-weight: bold;
+}
+.span h1 {
+text-align: center;
+color: #ffffff;
+font-size: 50pt;
+border: 2mm solid yellow;
+background-color: yellow;
+border-radius: 4mm 0mm;
+margin-top: 5mm;
+margin-bottom: 5mm;
+padding-top: 5mm;
+padding-bottom: 5mm;
+width: 100%
+}
+.span {
+background-color: red;
+width: 200%;
+position:relative;
+}
+/* center align leaflet map,
+from https://stackoverflow.com/questions/52112119/center-leaflet-in-a-rmarkdown-document */
+.html-widget {
+margin: auto;
+position: sticky;
+margin-top: 2cm;
+margin-bottom: 2cm;
+}
+.leaflet.html-widget.html-widget-static-bound.leaflet-container.leaflet-touch.leaflet-fade-anim.leaflet-grab.leaflet-touch-drag.leaflet-touch-zoom {
+position: sticky;
+width: 100%;
+}
+pre.sourceCode.r {
+background-color: #dddddd40;
+border-radius: 4mm;
+padding: 4mm;
+width: 75%;
+/* align-items: center; */
+margin: auto;
+padding-left: 2cm;
+}
+code.sourceCode.r{
+background-color: transparent;
+font-size: 20pt;
+border-radius: 2mm;
+}
+.caption {
+font-size: 25pt;
+}
+.table caption {
+font-size: 25pt;
+padding-bottom: 3mm;
+
+}
+code {
+font-size: 25pt;
+font-family: monospace;
+padding: 1.2mm;
+border-radius: 2mm;
+}
+table {
+font-size: 40px;
+margin: auto;
+border-top: 3px solid #666;
+border-bottom: 3px solid #666;
+}
+table thead th {
+border-bottom: 3px solid #ddd;
+}
+td {
+padding: 8px;
+}
+th {
+padding: 15px;
+}
+caption {
+margin-bottom: 10px;
+}
+.poster_body p {
+margin-top: 4mm;
+margin-bottom: 6mm;
+margin-right: 6mm;
+}
+.poster_body ol {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+#ul {
+margin-right: 4mm;
+margin-left: 4mm;
+}
+
+.level2 {
+  padding: 0;
+}
+.references p {
+font-size: 20pt;
+}
+ 
+#new_refs {
+  margin-top: 92%;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
+#new_refs h1 {
+  font-size: 32pt;
+  text-transform: uppercase;
+}
+
+#new_refs p {
+  font-size: 26pt;
+}
+
+.chal_text {
+  column-count: 3;
+}
+
+.chal_text p {
+   margin-top: 0;
+}
+
+#affiliation i {
+  vertical-align: text-bottom;
+}
+
+#affiliation a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.photo {
+  float: left;
+  margin-right: 2%;
+  height: 170px;
+  width: 170px;
+  border-radius: 50%;
+}
+</style>
+
+
+<link rel="stylesheet" href="resources/css/midday.css" type="text/css" />
+
+</head>
+<body>
+
+
+<div class="poster_wrap">
+
+<div class="title_container">
+
+<!-- Poster Title -->
+<div class= "poster_title">
+<h1 id="title">Potassium Isotherms</h1>
+<h2 id="subtitle"></h2>
+<h3 id="author"><strong>Seija Tuomi</strong></h3>
+<h5 id="affiliation"><i class='fab fa-github'></i> <a href="<a href="https://github.com/tuo003/Synthesis-Project_Seija" class="uri">https://github.com/tuo003/Synthesis-Project_Seija</a>"><a href="https://github.com/tuo003/Synthesis-Project_Seija" class="uri">https://github.com/tuo003/Synthesis-Project_Seija</a></a> </h5>
+
+</div>
+</div>
+<div class="BU_block">
+  <p id="BU">Agriculture and Food</p>
+  <p id="BU_link"><a href="http://www.csiro.au">www.csiro.au</a></p>
+</div>
+<div id="new_intro" class="introduction">
+  <img class='photo' src="resources/img/Seija_2.jpg">
+</div>
+
+<div class='poster_body_wrap'>
+<div class='poster_body'>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>My name is Seija Tuomi and I work in Ag&F soil chemistry and spectroscopy. Before Data School I made a few attempts at coding R for Infrared Spectroscopy but I have no other experience in coding. Before Data School I spent a lot of time entering data into Excel sheets and analysing the data. What I really needed is a programmable language to streamline all the work systematically.</p>
+<p><br/> <br/> <br/> <br/></p>
+</div>
+<div id="my-synthesis-project" class="section level1">
+<h1>My Synthesis Project</h1>
+<p>I am looking at the thermodynamics of potassium exchange equilibria in acid sulfate soils in the South Alligator River in Kakadu National Park, and relate the thermodynamics to the soil pedogenesis. In other words, the ability of the soil to supply potassium to plants, which is characterised by both the total amount of nutrient present and the energy level at which it is supplied. This is measured with adsorption isotherms. The data required includes cation analyses, ionic strength, activity coefficients and Gibb’s Free energy. The goal is to compare the isotherms of different areas of the riperia zone. The coding work included a script for reading in data, scripts for a calculator of thermodynamic terms fitting a quadratic model to data, and visualisation of isotherms.</p>
+</div>
+<div id="my-digital-toolbox" class="section level1">
+<h1>My Digital Toolbox</h1>
+<ul>
+<li>Data Management Plan</li>
+<li>Git bash and git hub repository</li>
+<li>R - dplyr, ggplot2, tidyverse, Markdown, lm, setwd,</li>
+<li>Posterdown</li>
+<li>DAP place-holder</li>
+</ul>
+</div>
+<div id="favourite-tool" class="section level2"><h2>Favourite tool</h2> <p>ggplot2 is my favourite tool to use. It is a very powerful way of representing data and this is something I use almost daily now.</p></div>
+<div id="my-time-went" class="section level1">
+<h1>My time went …</h1>
+<p>Most of my time went into wrangling data into usable form, transforming pdf to csv files, making a thermodynamic calculator, finding the correct tools to analyse it and evaluating these tools to see if they work with our version of RStudio. Analytical data comes in many format, each requiring its own script for reading in. My required data came from the UNSW library, as set on acid sulfate soils. What I didn't know is that it comes as a CD-ROM with restrictions and the file is a 156 page PDF. Fortunately a colleague knows the author and I was able to call her to get the restriction removed.</p>
+</div>
+<div id="next-steps" class="section level1">
+<h1>Next steps</h1>
+<p>Because isotherms are non-linear I would like to learn non-linear modelling and statistics to build my own package for analysing isotherms, for routine use by those with minimal knowledge of soil chemistry. The only input required is exchangeable cation analysis data. Isotherms are a very powerful tool in agricultural science and the information they convey is vital to many applications where the knowledge of nutrient levels is required to make an informed decision. Our group is building a digital library based on similar soil properties and isotherms make a great addition to this suite. One of the reasons for coming to Data School was to learn the skills to build these chemistry modules and contribute to the library. Also, my group is starting to build a library for multivariate calibrations and calculations for soil attributes for FT-MIR work to be routinely used for soil survey work. With the programming skills from data school I can now contribute to this library as well.</p>
+<p><br/> <br/> <br/> <br/></p>
+<strong>Tables</strong>
+<table class="table table-striped" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Depth
+</th>
+<th style="text-align:right;">
+delta_GK_Ca
+</th>
+<th style="text-align:right;">
+delta_K
+</th>
+<th style="text-align:right;">
+delta_GK_Ca_Mg
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+0.1m
+</td>
+<td style="text-align:right;">
+-14339.5
+</td>
+<td style="text-align:right;">
+-0.025
+</td>
+<td style="text-align:right;">
+-15173.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1m
+</td>
+<td style="text-align:right;">
+-13818.5
+</td>
+<td style="text-align:right;">
+0.065
+</td>
+<td style="text-align:right;">
+-14692.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1m
+</td>
+<td style="text-align:right;">
+-12559.5
+</td>
+<td style="text-align:right;">
+0.355
+</td>
+<td style="text-align:right;">
+-13448.0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1m
+</td>
+<td style="text-align:right;">
+-10730.0
+</td>
+<td style="text-align:right;">
+0.910
+</td>
+<td style="text-align:right;">
+-11621.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0.1m
+</td>
+<td style="text-align:right;">
+-9040.5
+</td>
+<td style="text-align:right;">
+2.225
+</td>
+<td style="text-align:right;">
+-9937.0
+</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<!-- **Images from a file** -->
+<!-- # ![](resources/img/posterdownlogo.png){width=180px} -->
+<p><strong>Single isotherms at different depths</strong> <img src="Potassium_Isotherms_files/figure-html/standard-plot-1.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><strong>Isotherms at South Alligator River in Kakadu National Park</strong> <img src="Potassium_Isotherms_files/figure-html/anim-1.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="my-data-school-experience" class="section level1">
+<h1>My Data School Experience</h1>
+<p>The most enjoyable part of Data School for me was learning RStudio, visualisation and statistics properly with teachers whose style suited me well. These skills are what I will be using most in the future. After the Research Data Management session I invited the librarians to come and give a one hour talk in the Butler Bld on the DAP, orcid numbers and how to publish data, scripts and papers in the DAP, and why it is imortant. The librarians also told us about services they can provide that we had never thought of. As result our group leader will reject any papers where staff have not entered data into the DAP. In the future all new projects will be required to have a data management plan in place at the beginning of the project on the recommendation of Data School cohorts two and three. My team will have one data custodian per project. A digital library of data wrangling is planned for instrument data. Spectroscopy team will develop new analytical methods for FTIR work using HPC, Python and R. I have used RStudio to wrangle data for my Synthesis Project although it took much longer than in Excel. Cohort three (my cohort) will give a talk on our data school experience in our Building after data school finishes.</p>
+</div>
+</div>
+</div>
+<div id="new_refs">
+</div>
+</div>
+
+
+<script type="text/javascript" src="resources/js/move_sections.js"></script>
+
+
+</body>
+</html>
