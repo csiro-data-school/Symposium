@@ -16,9 +16,16 @@ max-width: 95%;
 }
 
 .card-img-top:hover {
-  object-fit: fill;
-  height: 100%;
-  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  animation-name: grow;
+  animation-duration: 0.5s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+@keyframes grow {
+  from {height: 15vh;}
+  to {height: 100%;}
 }
 
 /* unvisited link */
